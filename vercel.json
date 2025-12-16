@@ -1,0 +1,14 @@
+{
+  "routes": [
+    {
+      "src": "/service-worker.js",
+      "headers": {
+        "Content-Type": "application/javascript"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
