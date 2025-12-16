@@ -1,6 +1,11 @@
-
-  {
-    "icons": [
+{
+  "short_name": "M2N",
+  "name": "M2N Services – Finance Management",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#FF9933",
+  "background_color": "#ffffff",
+  "icons": [
     {
       "src": "/logo192.png",
       "sizes": "192x192",
@@ -13,3 +18,4 @@
     }
   ]
 }
+
