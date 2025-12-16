@@ -231,7 +231,7 @@ if (!handlers[modalType]) return;
     <img
       src="/logo.png"
       alt="M2N Services"
-      className="h-10 w-auto bg-white p-1 rounded"
+      className="w-8 h-8"
     />
 
     <h1 className="text-2xl font-bold">M2N Services</h1>
