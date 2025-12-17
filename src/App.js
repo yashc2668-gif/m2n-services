@@ -284,34 +284,45 @@ if (!handlers[modalType]) return;
 
         {/* Content */}
         <main className="flex-1 p-6">
-          {activeTab === "dashboard" && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <DashboardCard
-                title="Total Budget"
-                value={totals.budget}
-                icon={<DollarSign />}
-                color="blue"
-              />
-              <DashboardCard
-                title="Total Spent"
-                value={totals.spent}
-                icon={<TrendingUp />}
-                color="green"
-              />
-              <DashboardCard
-                title="Receivable"
-                value={totals.receivable}
-                icon={<FileText />}
-                color="orange"
-              />
-    <DashboardCard
-      title="Payable"
-      value={totals.payable}
-      icon={<Users />}
-      color="red"
-    />
+    {activeTab === "dashboard" && (
+      <div className="space-y-6">
+
+    {/* TOP SUMMARY */}
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <DashboardCard title="Total Projects" value={projects.length} icon={<Users />} color="blue" />
+      <DashboardCard title="Program Budget" value={totals.budget} icon={<DollarSign />} color="indigo" />
+      <DashboardCard title="Committed / Spent" value={totals.spent} icon={<TrendingUp />} color="green" />
+      <DashboardCard title="Variance" value={totals.budget - totals.spent} icon={<FileText />} color="orange" />
+      <DashboardCard title="Payable" value={totals.payable} icon={<Users />} color="red" />
+    </div>
+
+    {/* PROJECT SUMMARY TABLE */}
+    <div className="bg-white rounded shadow overflow-x-auto">
+      <table className="w-full">
+        <thead className="bg-gray-100">
+          <tr>
+            <th className="p-3 text-left">Project</th>
+            <th className="p-3 text-left">Budget</th>
+            <th className="p-3 text-left">Spent</th>
+            <th className="p-3 text-left">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {projects.map((p) => (
+            <tr key={p.id} className="border-t">
+              <td className="p-3">{p.name}</td>
+              <td className="p-3">₹{p.budget}</td>
+              <td className="p-3">₹{p.spent}</td>
+              <td className="p-3">{p.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
   </div>
 )}
+
 {activeTab === "labour" && (
   <div className="space-y-4">
     <div className="flex justify-between items-center">
@@ -1037,18 +1048,20 @@ if (!handlers[modalType]) return;
       </div>
     </div>
   );
-}
 
-/* Small reusable card */
+
+}
 function DashboardCard({ title, value, icon, color }) {
   return (
     <div className={`bg-${color}-600 text-white rounded p-5 shadow`}>
       <div className="flex justify-between items-center">
         <div>
           <p className="text-sm opacity-80">{title}</p>
-          <p className="text-2xl font-bold">₹{value.toLocaleString()}</p>
+          <p className="text-2xl font-bold">
+            ₹{Number(value || 0).toLocaleString()}
+          </p>
         </div>
-        {icon}
+        <div className="text-3xl opacity-80">{icon}</div>
       </div>
     </div>
   );
