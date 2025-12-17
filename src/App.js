@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import {
   Plus,
   Trash2,
@@ -225,6 +226,7 @@ if (!handlers[modalType]) return;
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Analytics />
       {/* Header */}
      <header className="bg-blue-600 text-white p-4 shadow-lg flex justify-between items-center">
   <div className="flex items-center gap-3">
